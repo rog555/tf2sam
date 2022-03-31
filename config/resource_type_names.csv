@@ -1,0 +1,14 @@
+terraform,sam
+aws_lambda_function,AWS::Serverless::Function
+aws_api_gateway_rest_api,AWS::Serverless::Api
+aws_api_gateway_resource,AWS::ApiGateway::Resource
+aws_api_gateway_method,AWS::ApiGateway::Method
+aws_api_gateway_deployment,AWS::ApiGateway::Deployment
+aws_api_gateway_base_path_mapping,AWS::ApiGateway::BasePathMapping
+aws_api_gateway_integration,AWS::ApiGateway::Integration
+aws_cloudwatch_log_group,AWS::Logs::LogGroup
+aws_cloudwatch_log_resource_policy,AWS::Logs::ResourcePolicy
+aws_cloudwatch_metric_alarm,AWS::CloudWatch::Alarm
+aws_elasticsearch_domain,AWS::OpenSearchService::Domain
+aws_security_group,AWS::EC2::SecurityGroup
+aws_sns_topic_subscription,AWS::SNS::Subscription

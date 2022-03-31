@@ -1,0 +1,7 @@
+rename:
+  vpc_options: VPCOptions
+  ebs_options: EBSOptions
+  EBSOptions.ebs_enabled: EBSEnabled
+  node_to_node_encryption: NodeToNodeEncryptionOptions
+  elasticsearch_version: EngineVersion
+  encrypt_at_rest: EncryptionAtRestOptions

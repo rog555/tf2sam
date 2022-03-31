@@ -1,0 +1,7 @@
+preserve_case:
+  - dimensions
+remove:
+  # https://github.com/aws-cloudformation/cloudformation-coverage-roadmap/issues/64
+  - Tags
+transform:
+  Dimensions: object2keyvalues(Dimensions, 'Name')

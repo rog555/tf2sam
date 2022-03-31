@@ -1,0 +1,8 @@
+terraform,sam
+dynamodb,DynamoDB
+ec2,EC2
+iam,IAM
+kms,KMS
+sns,SNS
+sqs,SQS
+s3,S3

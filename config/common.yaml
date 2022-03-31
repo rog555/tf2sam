@@ -1,0 +1,6 @@
+remove:
+  - Lifecycle
+preserve_case:
+  - tags
+transform:
+  Tags: object2keyvalues(Tags, 'Key')

@@ -1,0 +1,10 @@
+type: array
+items:
+  type: object
+  properties:
+    terraform:
+      type: string
+      pattern: '^[a-z0-9]+$'
+    sam:
+      type: string
+      pattern: '^[a-zA-Z0-9]+$'

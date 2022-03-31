@@ -1,0 +1,10 @@
+type: array
+items:
+  type: object
+  properties:
+    terraform:
+      type: string
+      pattern: '^aws_.*$'
+    sam:
+      type: string
+      pattern: '^AWS::.*$'

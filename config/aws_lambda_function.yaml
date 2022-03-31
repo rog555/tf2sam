@@ -1,0 +1,80 @@
+
+default:
+  CodeUri: foo
+  # Events: []
+
+transform:
+  CodeUri: "re_sub('([^_]+)_(.*)', 'functions/\\2/', function_name)"
+  # override common tag transform
+  Tags: Tags
+
+# debug: true
+
+merge:
+  Events:api:
+    type: aws_api_gateway_integration
+    object_type: object
+    get_api_path: true
+    merge: true
+    transform: |-
+      {
+        _ref_name_: {
+          Type: 'Api',
+          Properties: {
+            Method: integration_http_method,
+            Path: _api_path
+            RestApiId: ref(rest_api_id)
+          }
+        }
+      }
+  Events:sqs:
+    type: aws_lambda_event_source_mapping
+    object_type: object
+    filter: "contains(event_source_arn, 'aws_sqs_queue.')"
+    merge: true
+    transform: |-
+      {
+        _ref_name_: {
+          Type: 'SQS',
+          Properties: {
+            BatchSize: batch_size,
+            Queue: ref(event_source_arn)
+          }
+        }
+      }
+  Events:dynamodb:
+    type: aws_lambda_event_source_mapping
+    object_type: object
+    filter: "contains(event_source_arn, 'aws_dynamodb_table.')"
+    merge: true
+    transform: |-
+      {
+        _ref_name_: {
+          Type: 'DynamoDB',
+          Properties: {
+            BatchSize: batch_size,
+            StartingPosition: starting_position,
+            Stream: ref(event_source_arn)
+          }
+        }
+      }
+  Events:sns:
+    type: aws_sns_topic_subscription
+    object_type: object
+    merge: true
+    transform: |-
+      {
+        _ref_name_: {
+          Type: 'SNS',
+          Properties: {
+            Topic: ref(topic_arn)
+          }
+        }
+      }
+
+merge_exclude_types:
+  # SAM does the permissions
+  - aws_lambda_permission
+
+remove:
+  - Filename

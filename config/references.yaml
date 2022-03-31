@@ -1,0 +1,5 @@
+# convert name attribute to reference (eg ${aws_lambda_event_source_mapping.foo.id})
+name:
+  - type: aws_lambda_event_source_mapping
+    name_attribute: function_name
+    target_type: aws_lambda_function

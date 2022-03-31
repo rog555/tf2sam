@@ -1,0 +1,11 @@
+rename:
+  name: RoleName
+  assume_role_policy: AssumeRolePolicyDocument
+merge:
+  Policies:
+    type: aws_iam_role_policy
+    transform: |-
+      {
+        PolicyName: name,
+        PolicyDocument: policy
+      }

@@ -1,0 +1,4 @@
+rename:
+  name: QueueName
+  message_retention_seconds: MessageRetentionPeriod
+  visibility_timeout_seconds: VisibilityTimeout

@@ -1,0 +1,10 @@
+argh==0.26.2
+cfn-flip==1.3.0
+cfn-lint==0.54.2
+python-dateutil==2.8.2
+pyhumps==3.0.2
+jmespath==0.10.0
+jsonschema==4.1.0
+pyhcl==0.4.4
+pyyaml==5.4.1
+mergedeep==1.3.4

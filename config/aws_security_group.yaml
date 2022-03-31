@@ -1,0 +1,17 @@
+transform:
+  egress: "expand_array('cidr_blocks,ipv6_cidr_blocks', to_array(egress))"
+  ingress: "expand_array('cidr_blocks,ipv6_cidr_blocks', to_array(ingress))"
+
+rename:
+  description: GroupDescription
+  name: GroupName
+  egress: SecurityGroupEgress
+  ingress: SecurityGroupIngress
+  SecurityGroupEgress[].cidr_blocks: CidrIp
+  SecurityGroupEgress[].ipv6_cidr_blocks: CidrIpv6
+  SecurityGroupEgress[].protocol: IpProtocol
+  SecurityGroupIngress[].cidr_blocks: CidrIp
+  SecurityGroupIngress[].ipv6_cidr_blocks: CidrIpv6
+  SecurityGroupIngress[].protocol: IpProtocol
+
+# merge:

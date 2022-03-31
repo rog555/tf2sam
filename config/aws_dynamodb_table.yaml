@@ -1,0 +1,21 @@
+default:
+  AttributeDefinitions: []
+  KeySchema: []
+
+transform:
+  AttributeDefinitions: "attribute[].{AttributeName: name, AttributeType: type}"
+  KeySchema: "[{AttributeName: hash_key, KeyType: 'HASH'}, {AttributeName: range_key, KeyType: 'RANGE'}]"
+  stream_view_type: "{StreamViewType: stream_view_type}"
+
+rename:
+  name: TableName
+  ttl: TimeToLiveSpecification
+  point_in_time_recovery: PointInTimeRecoverySpecification
+  PointInTimeRecoverySpecification.enabled: PointInTimeRecoveryEnabled
+  stream_view_type: StreamSpecification
+
+remove:
+  - StreamEnabled
+  - HashKey
+  - RangeKey
+  - Attribute

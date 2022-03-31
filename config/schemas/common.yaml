@@ -1,0 +1,92 @@
+type: object
+properties:
+  preserve_case:
+    type: array
+    description: used mostly for tags, don't automatically pasacalize (via humps) nested objects (eg tags or environment variables)
+    items:
+      type: string
+      pattern: '^[a-z_0-9.]+$'
+  default:
+    type: object
+    description: set default CloudFormation attribute with object or string
+    patternProperties:
+      '^[A-Z][a-zA-Z0-9\[\]_.]+$':
+        type: [string, object, array]
+  transform:
+    type: object
+    description: transform data from current resource into new CloudFormation attribute
+    patternProperties:
+      '^[A-Z][a-zA-Z0-9\[\]_.]+$':
+        type: string
+        description: jmespath query against current resource
+  rename:
+    type: object
+    description: rename terraform attributes to CloudFormation attributes
+    patternProperties:
+      '^[a-z_0-9[]_.]+$':
+        type: string
+        pattern: '^[A-Z][a-zA-Z]+$'
+  remove:
+    type: array
+    description: remove CloudFormation attributes from resource
+    items:
+      type: string
+      pattern: '^[A-Z][a-zA-Z0-9\[\]_.]+$'
+  debug:
+    type: boolean
+  exclude_depends_on_types:
+    type: array
+    items:
+      type: string
+  merge:
+    type: object
+    description: merge from another resource into current resource
+    patternProperties:
+      '^[A-Z][a-zA-Z0-9\[\]_.]+$':
+        type: object
+        properties:
+          type:
+            description: terraform dependency type (eg aws_iam_role_policy)
+            type: string
+          filter:
+            description: jmespath filter, which should return true if match
+          merge:
+            description: merge transformed object into update path if true
+            type: boolean
+            default: false
+          object_type:
+            type: string
+            description: specify result object type
+            enum: [array, object, string]
+            default: array
+          transform:
+            description: jmespath query against dependent resource to merge in
+            type: string
+        required: [type, transform]
+        additionalProperties: false
+  merge_exclude_types:
+    type: array
+    description: list of child terraform resource types to exclude
+    items:
+      type: string
+      pattern: '^[a-z_]+$'
+  add:
+    type: array
+    description: add new resource(s) from resource (eg split out sns policy)
+    items:
+      type: object
+      properties:
+        type:
+          type: string
+          description: cloudformation type to add
+          pattern: '^AWS::.*$'
+        transform:
+          type: string
+          description: jmespath query on source resource
+        name_query:
+          type: string
+          description: jmespath query on source resource for cloudformation resource name
+        filter:
+          type: string
+          description: jmespath query to filter if true
+      required: [type, transform, name_query]

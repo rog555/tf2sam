@@ -1,0 +1,10 @@
+default:
+  KeyPolicy: 
+    Version: '2012-10-17'
+    Statement:
+      - Sid: 'Enable IAM Root Permissions'
+        Effect: Allow
+        Principal:
+          AWS: 'arn:${AWS::Partition}:iam::${AWS::AccountId}:root'
+        Action: 'kms:*'
+        Resource: '*'

@@ -1,0 +1,15 @@
+rename:
+  api_id: RestApiId
+  stage_name: Stage
+
+  # eg:
+  # resource "aws_api_gateway_base_path_mapping" "foo_deployment-base-path-mapping" {
+  #     base_path            = "foo"
+  #     api_id               = "${aws_api_gateway_rest_api.foo.id}"
+  #     stage_name           = "dev"
+  #     domain_name          = "api.dev.mydomain.com"
+  #     depends_on           = [ "aws_api_gateway_deployment.foo_deployment" ]
+  # }
+
+exclude_depends_on_types:
+  - aws_api_gateway_deployment

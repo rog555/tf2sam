@@ -1,0 +1,8 @@
+default:
+  AliasName: foo
+
+transform:
+  AliasName: "concat(name_prefix, timestamp_number())"
+
+remove:
+  - NamePrefix

@@ -1,0 +1,16 @@
+
+add:
+  - type: AWS::SNS::TopicPolicy
+    name_query: "concat(__target_name__, 'TopicPolicy')"
+    filter: "policy != `null`"
+    transform: |-
+      {
+        PolicyDocument: policy,
+        Topics: [ref(__type_name__)]
+      }
+
+rename:
+  name: TopicName
+
+remove:
+  - Policy

@@ -1,0 +1,20 @@
+type: object
+properties:
+  name:
+    type: array
+    items:
+      type: object
+      properties:
+        type:
+          type: string
+          description: terraform resource type reference applies to
+          pattern: '^aws_[a-z_]+$'
+        name_attribute:
+          type: string
+          description: terraform attribute name
+          pattern: '^[a-z0-9_]+$'
+        target_type:
+          type: string
+          description: terraform resource type to target
+          pattern: '^aws_[a-z_]+$'
+      required: [type, name_attribute, target_type]
